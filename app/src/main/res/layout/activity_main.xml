@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/appName"
+        app:layout_constraintBottom_toTopOf="@id/registerButton"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="Logo" />
+
+    <!-- Nome do app -->
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SmartStock"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@id/logoImage"
+        app:layout_constraintTop_toTopOf="@id/logoImage"
+        app:layout_constraintBottom_toBottomOf="@id/logoImage"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Botão "Inscreva-se" -->
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Inscreva-se"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#333333"
+        app:layout_constraintTop_toBottomOf="@id/logoImage"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
+
+    <!-- Botão "Já possui uma conta? Login" -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Já possui uma conta? Login"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FFCC00"
+        app:layout_constraintTop_toBottomOf="@id/registerButton"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
+
+    <!-- Texto "Continue com" -->
+    <TextView
+        android:id="@+id/continueWithText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="----------------- Continue com -----------------"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Ícones sociais (placeholder com estrela) -->
+    <LinearLayout
+        android:id="@+id/socialIcons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/continueWithText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_insta"
+            android:background="@drawable/circle_background"
+            android:padding="8dp"
+            android:contentDescription="Social 1" />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_insta"
+            android:background="@drawable/circle_background"
+            android:padding="8dp"
+            android:contentDescription="Social 2" />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_insta"
+            android:background="@drawable/circle_background"
+            android:padding="8dp"
+            android:contentDescription="Social 3" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

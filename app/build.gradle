@@ -39,7 +39,7 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 
-    // Firebase BoM (Bill of Materials) - gerencia versões dos serviços Firebase
+    // Firebase BoM (Bill of Materials)
     implementation platform('com.google.firebase:firebase-bom:33.13.0')
 
     // Firebase Analytics
@@ -47,4 +47,8 @@ dependencies {
 
     // Firebase Authentication
     implementation 'com.google.firebase:firebase-auth:22.3.0'
+
+    // Firebase Firestore (🔥 ADICIONE ESTA LINHA)
+    implementation 'com.google.firebase:firebase-firestore'
 }
+

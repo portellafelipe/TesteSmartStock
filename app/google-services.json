@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "330276574740",
-    "project_id": "smartstock-310ef",
-    "storage_bucket": "smartstock-310ef.firebasestorage.app"
+    "project_number": "125704725823",
+    "project_id": "testesmartstock",
+    "storage_bucket": "testesmartstock.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:330276574740:android:adb14d821f49b65f363901",
+        "mobilesdk_app_id": "1:125704725823:android:d5074922bb62d42e229f8a",
         "android_client_info": {
           "package_name": "com.example.testesmartstock"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC4s0rgukpx95LbabOj0XTPY4MYD12-ywI"
+          "current_key": "AIzaSyC7IlK04bt-Oh1IVKsdDosWWezLzSDiQa8"
         }
       ],
       "services": {

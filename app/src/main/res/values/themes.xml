@@ -1,9 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.TesteSmartStock" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <!-- Tema base -->
+    <style name="Theme.TesteSmartStock" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Cor de fundo principal -->
+        <item name="colorPrimary">@color/amarelo</item>
+        <item name="colorPrimaryVariant">@color/amarelo_escuro</item>
+        <item name="colorOnPrimary">@color/preto</item>
+
+        <!-- Cor de fundo -->
+        <item name="android:colorBackground">@color/branco</item>
+
+        <!-- Cores de botão, texto etc -->
+        <item name="colorSecondary">@color/amarelo</item>
+        <item name="colorOnSecondary">@color/preto</item>
     </style>
 
-    <style name="Theme.TesteSmartStock" parent="Base.Theme.TesteSmartStock" />
 </resources>

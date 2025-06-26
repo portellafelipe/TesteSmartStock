@@ -17,6 +17,9 @@
         <activity android:name=".LoginActivity" android:exported="false" />
         <activity android:name=".HomeActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="true" />
+        <activity android:name=".PerfilActivity" android:exported="false"/>
+        <activity android:name=".ModoFuncionamentoActivity" android:exported="false"/>
+        <activity android:name=".MeusDadosActivity" android:exported="false"/>
 
         <activity
             android:name=".SplashActivity"

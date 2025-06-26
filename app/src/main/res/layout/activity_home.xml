@@ -2,161 +2,211 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF">
+    android:background="#E5E9F0">  <!-- Fundo cinza claro para contraste -->
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_white_bg"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="src_over"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
 
-        <!-- Saudação -->
-        <TextView
-            android:id="@+id/textSaudacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Olá, seja bem-vindo • nome"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:paddingBottom="8dp"/>
-
-        <!-- Título -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SmartStock"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingBottom="16dp" />
-
-        <!-- Botões -->
+        <!-- TOPO COM FUNDO AZUL E CABEÇALHO -->
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_top_blue_bg"
+            android:backgroundTint="#1E88E5"
+            android:backgroundTintMode="src_over"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Ícone do usuário -->
+            <ImageView
+                android:id="@+id/imageAvatar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="Usuário"
+                android:src="@drawable/ic_usuario" />
+
+            <!-- Saudação -->
+            <TextView
+                android:id="@+id/textSaudacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Olá, seja bem-vindo • nome"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Título principal com detalhe azul -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="SmartStock"
+            android:textColor="#1E88E5"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- BOTÕES PRINCIPAIS -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:weightSum="2"
-            android:layout_marginBottom="8dp">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <Button
                 android:id="@+id/btnModoFuncionamento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/button_blue_border"
                 android:text="Modo de funcionamento"
-                android:backgroundTint="#FFD700"/>
+                android:textColor="#1E88E5" />
 
             <Button
                 android:id="@+id/btnAcessarDispensa"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
+                android:background="@drawable/button_blue_border"
                 android:text="Acessar dispensa"
-                android:backgroundTint="#FFD700"
-                android:layout_marginStart="8dp"/>
+                android:textColor="#1E88E5" />
         </LinearLayout>
 
-        <!-- Escanear produtos -->
+        <!-- ESCANEAR PRODUTOS -->
         <Button
             android:id="@+id/btnEscanear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_blue_border"
             android:text="Escanear produtos"
-            android:backgroundTint="#FFD700"
-            android:layout_marginBottom="8dp"/>
+            android:textColor="#1E88E5" />
 
-        <!-- Campo de busca -->
+        <!-- BARRA DE PESQUISA -->
         <EditText
             android:id="@+id/editTextBusca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Procure"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edittext_blue_background"
             android:drawableStart="@android:drawable/ic_menu_search"
-            android:padding="10dp"
-            android:background="@android:drawable/edit_text"/>
+            android:hint="Procure"
+            android:padding="12dp" />
 
-        <!-- Seção de planos -->
+        <!-- PLANOS -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Conheça nossos planos:"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp" />
+            android:textColor="#1E88E5"
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_marginBottom="8dp"
             android:scaleType="centerInside"
-            android:layout_marginTop="8dp" />
+            android:src="@drawable/ic_planoimg" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Plano Pro\nR$11,90"
-            android:layout_marginTop="8dp" />
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/btnPlano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_blue_border"
             android:text="Quero este!"
-            android:backgroundTint="#FFD700"
-            android:layout_marginBottom="16dp" />
+            android:textColor="#1E88E5" />
 
-        <!-- Alertas -->
+        <!-- ALERTAS -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Meus alertas:"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"/>
+            android:textColor="#1E88E5"
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
             android:weightSum="2">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:background="#FFCDD2"
-                android:padding="12dp"
-                android:layout_marginEnd="8dp">
+                android:background="@drawable/alerta_rounded_red"
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1 produto vencido"
-                    android:textStyle="bold"/>
+                    android:textColor="#B71C1C"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="confira agora"/>
+                    android:text="confira agora"
+                    android:textColor="#B71C1C" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#FFE082"
+                android:background="@drawable/alerta_rounded_yellow"
+                android:orientation="vertical"
                 android:padding="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3 com estoque baixo"
-                    android:textStyle="bold"/>
+                    android:textColor="#F57F17"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="repor itens"/>
+                    android:text="repor itens"
+                    android:textColor="#F57F17" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 </ScrollView>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5E9F0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/rounded_white_bg"
+        android:layout_margin="16dp"
+        android:elevation="4dp">
+
+        <!-- Topo azul com cantos arredondados -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_top_blue_bg"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/btnVoltar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_seta_voltar"
+                android:contentDescription="Voltar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meus dados"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+
+        <!-- Campos de Dados -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome de usuário"
+            android:layout_marginTop="24dp"
+            android:textColor="#1E88E5"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_blue_background"
+            android:enabled="true"
+            android:text="xxxxxxxxxxxxxxxxxxxx"
+            android:padding="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome completo"
+            android:layout_marginTop="16dp"
+            android:textColor="#1E88E5"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextNomeCompleto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_blue_background"
+            android:enabled="false"
+            android:text="xxxxxxxxxxxxxxxxxxxx"
+            android:padding="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-mail"
+            android:layout_marginTop="16dp"
+            android:textColor="#1E88E5"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_blue_background"
+            android:enabled="false"
+            android:text="xxxxxxxxxxxxxxxxxxxx"
+            android:padding="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data de nascimento"
+            android:layout_marginTop="16dp"
+            android:textColor="#1E88E5"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextDataNascimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_blue_background"
+            android:enabled="false"
+            android:text="xx/xx/xxxx"
+            android:padding="12dp"/>
+
+        <!-- Botões -->
+        <Button
+            android:id="@+id/btnSalvarAlteracoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Salvar alterações"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1E88E5"/>
+
+        <Button
+            android:id="@+id/btnExcluirConta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Excluir conta"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#D90429"/>
+
+    </LinearLayout>
+</ScrollView>
+

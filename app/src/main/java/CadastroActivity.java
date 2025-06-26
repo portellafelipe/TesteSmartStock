@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,14 +26,12 @@ public class CadastroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "Activity carregada!", Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        FirebaseApp.initializeApp(this); // Inicializa Firebase
-        db = FirebaseFirestore.getInstance(); // Instancia o Firestore
+        FirebaseApp.initializeApp(this);
+        db = FirebaseFirestore.getInstance();
 
-        // Conectando os elementos da interface
         editTextNomeUsuario = findViewById(R.id.editTextNomeUsuario);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextSenha = findViewById(R.id.editTextSenha);
@@ -48,10 +47,12 @@ public class CadastroActivity extends AppCompatActivity {
                 if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
                     Toast.makeText(CadastroActivity.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 } else {
+                    String senhaHash = gerarHash(senha);
+
                     Map<String, Object> usuario = new HashMap<>();
                     usuario.put("nome", nome);
                     usuario.put("email", email);
-                    usuario.put("senha", senha); // Se for app real, nunca salve senha sem criptografia!
+                    usuario.put("senha", senhaHash);
 
                     db.collection("usuarios")
                             .add(usuario)
@@ -67,5 +68,23 @@ public class CadastroActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String gerarHash(String senha) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(senha.getBytes("UTF-8"));
+            StringBuilder hexString = new StringBuilder();
+
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

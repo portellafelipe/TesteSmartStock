@@ -42,17 +42,6 @@
             android:layout_marginTop="24dp"
             android:textColor="#000000" />
 
-        <!-- Campo Nome de Usuário -->
-        <EditText
-            android:id="@+id/editTextUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome de Usuário"
-            android:backgroundTint="#E6DCE9"
-            android:layout_marginTop="24dp"
-            android:padding="12dp"
-            android:background="@drawable/edittext_background" />
-
         <!-- Campo E-mail -->
         <EditText
             android:id="@+id/editTextEmail"
@@ -60,6 +49,18 @@
             android:layout_height="wrap_content"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
+            android:backgroundTint="#E6DCE9"
+            android:layout_marginTop="24dp"
+            android:padding="12dp"
+            android:background="@drawable/edittext_background" />
+
+        <!-- Campo Senha -->
+        <EditText
+            android:id="@+id/editTextSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Senha"
+            android:inputType="textPassword"
             android:backgroundTint="#E6DCE9"
             android:layout_marginTop="16dp"
             android:padding="12dp"
@@ -76,3 +77,4 @@
             android:background="@drawable/button_yellow" />
     </LinearLayout>
 </ScrollView>
+

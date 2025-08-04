@@ -20,7 +20,8 @@
         <activity android:name=".PerfilActivity" android:exported="false"/>
         <activity android:name=".ModoFuncionamentoActivity" android:exported="false"/>
         <activity android:name=".MeusDadosActivity" android:exported="false"/>
-
+        <activity android:name=".AddProdutoActivity" android:exported="false"/>
+        <activity android:name=".DispensaActivity" android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">

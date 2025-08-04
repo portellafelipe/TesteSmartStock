@@ -40,7 +40,16 @@ public class HomeActivity extends AppCompatActivity {
 
         Button btnDispensa = findViewById(R.id.btnAcessarDispensa);
         btnDispensa.setOnClickListener(v -> {
-            // ação futura: abrir tela de dispensa
+            Intent intent = new Intent(HomeActivity.this,DispensaActivity.class);
+            intent.putExtra("nome_usuario", nomeUsuario);
+            startActivity(intent);
+        });
+
+        Button btnEscanear = findViewById(R.id.btnEscanear);
+        btnEscanear.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this,AddProdutoActivity.class);
+            intent.putExtra("nome_usuario", nomeUsuario);
+            startActivity(intent);
         });
 
         Button btnPlano = findViewById(R.id.btnPlano);

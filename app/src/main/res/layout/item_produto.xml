@@ -2,45 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/rounded_white_bg"
-    android:backgroundTint="#FFFFFF"
-    android:elevation="2dp"
+    android:elevation="1dp"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="8dp"
     android:clipToPadding="false">
 
+    <!-- Nome do produto -->
     <TextView
         android:id="@+id/textNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome do Produto"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="#1E88E5" />
 
-    <TextView
-        android:id="@+id/textCategoria"
-        android:layout_width="wrap_content"
+    <!-- Linha horizontal com categoria e validade -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Categoria"
-        android:textColor="#555555"
-        android:layout_marginTop="4dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp">
 
+        <TextView
+            android:id="@+id/textCategoria"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Categoria"
+            android:textSize="12sp"
+            android:textColor="#555555" />
+
+        <TextView
+            android:id="@+id/textValidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Validade"
+            android:textSize="12sp"
+            android:textColor="#D90429" />
+    </LinearLayout>
+
+    <!-- Quantidade -->
     <TextView
         android:id="@+id/textQuantidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quantidade"
+        android:textSize="12sp"
         android:textColor="#000000"
-        android:layout_marginTop="4dp" />
-
-    <TextView
-        android:id="@+id/textValidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Validade"
-        android:textColor="#D90429"
-        android:layout_marginTop="4dp" />
+        android:layout_marginTop="2dp" />
 </LinearLayout>
-

@@ -84,5 +84,13 @@
                 android:text="Salvar produto"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnScan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escanear QR Code"
+            android:layout_marginTop="12dp"/>
+
     </LinearLayout>
 </ScrollView>

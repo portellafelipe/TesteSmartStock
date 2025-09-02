@@ -26,9 +26,10 @@ public class HomeActivity extends AppCompatActivity {
             textSaudacao.setText("Olá, seja bem-vindo • " + nomeUsuario);
         }
 
-        // Clique no avatar leva para PerfilActivity
+        // Clicar no avatar leva para PerfilActivity
         imageAvatar.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
+            intent.putExtra("nome_usuario", nomeUsuario);
             startActivity(intent);
         });
 

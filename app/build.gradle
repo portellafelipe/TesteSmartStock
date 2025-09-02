@@ -39,16 +39,18 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 
-    // Firebase BoM (Bill of Materials)
+    // Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:33.13.0')
 
-    // Firebase Analytics
+    // Firebase
     implementation 'com.google.firebase:firebase-analytics'
-
-    // Firebase Authentication
     implementation 'com.google.firebase:firebase-auth:22.3.0'
-
-    // Firebase Firestore (🔥 ADICIONE ESTA LINHA)
     implementation 'com.google.firebase:firebase-firestore'
+
+    // ZXing (QR Code Scanner)
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+    implementation 'com.google.zxing:core:3.5.1'
+
+    implementation 'org.jsoup:jsoup:1.15.4'
 }
 

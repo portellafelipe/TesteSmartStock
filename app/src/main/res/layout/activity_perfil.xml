@@ -26,9 +26,10 @@
                 android:contentDescription="Perfil"/>
 
             <TextView
+                android:id="@+id/textSaudacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Olá + nome"
+                android:text="Olá • nome"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:paddingStart="16dp"

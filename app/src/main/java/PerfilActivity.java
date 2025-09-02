@@ -4,9 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +17,20 @@ public class PerfilActivity extends AppCompatActivity {
 
     private LinearLayout cardMeusDados, cardAssinaturas, cardPreferencias, cardTermos;
     private Button btnSair;
+    private TextView textSaudacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        // Ligando os elementos da interface
+        textSaudacao = findViewById(R.id.textSaudacao);
+
+        String nomeUsuario = getIntent().getStringExtra("nome_usuario");
+        if (nomeUsuario != null) {
+            textSaudacao.setText("Olá • " + nomeUsuario);
+        }
+
         cardMeusDados = findViewById(R.id.cardMeusDados);
         cardAssinaturas = findViewById(R.id.cardAssinaturas);
         cardPreferencias = findViewById(R.id.cardPreferencias);
@@ -46,9 +55,12 @@ public class PerfilActivity extends AppCompatActivity {
         );
 
         // Clique Termos de Uso
-        cardTermos.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Termos de Uso (Em desenvolvimento)", Toast.LENGTH_SHORT).show()
-        );
+        cardTermos.setOnClickListener(v -> {
+            Intent intent = new Intent(PerfilActivity.this, TermosActivity.class);
+            startActivity(intent);
+        });
+
+
 
         // Botão Sair
         btnSair.setOnClickListener(v -> showDialogLogout());

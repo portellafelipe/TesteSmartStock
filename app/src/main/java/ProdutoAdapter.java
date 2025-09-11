@@ -3,6 +3,7 @@ package com.example.testesmartstock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,9 +17,16 @@ import java.util.Locale;
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder> {
 
     private ArrayList<Produto> listaProdutos;
+    private OnProdutoDeleteListener listener;
 
-    public ProdutoAdapter(ArrayList<Produto> listaProdutos) {
+    // Interface para comunicação com a Activity
+    public interface OnProdutoDeleteListener {
+        void onDeleteClick(String produtoId, int position);
+    }
+
+    public ProdutoAdapter(ArrayList<Produto> listaProdutos, OnProdutoDeleteListener listener) {
         this.listaProdutos = listaProdutos;
+        this.listener = listener;
     }
 
     @NonNull
@@ -50,6 +58,13 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         }
 
         holder.textValidade.setText("Validade: " + validadeFormatada);
+
+        // Clique no botão excluir
+        holder.btnExcluir.setOnClickListener(v -> {
+            if (listener != null && produto.getId() != null) {
+                listener.onDeleteClick(produto.getId(), position);
+            }
+        });
     }
 
     @Override
@@ -59,6 +74,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
     public static class ProdutoViewHolder extends RecyclerView.ViewHolder {
         TextView textNome, textCategoria, textQuantidade, textValidade;
+        Button btnExcluir;
 
         public ProdutoViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +82,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             textCategoria = itemView.findViewById(R.id.textCategoria);
             textQuantidade = itemView.findViewById(R.id.textQuantidade);
             textValidade = itemView.findViewById(R.id.textValidade);
+            btnExcluir = itemView.findViewById(R.id.btnExcluir); // botão no XML
         }
     }
 }
+

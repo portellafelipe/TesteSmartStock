@@ -1,96 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#E5E9F0"
     android:padding="16dp">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAddProdutos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/btnSalvarTodos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:backgroundTint="#FFD600"
+        android:text="Salvar Todos os Produtos"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="12dp"/>
 
-        <!-- Container com fundo branco e borda amarela -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/card_white_yellow_border"
-            android:orientation="vertical"
-            android:padding="24dp">
+    <Button
+        android:id="@+id/btnScan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escanear QR Code"
+        android:layout_marginTop="12dp"/>
+</LinearLayout>
 
-            <!-- Título -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingBottom="16dp"
-                android:text="Adicionar Produto"
-                android:textColor="#1E88E5"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <!-- Campos -->
-            <EditText
-                android:id="@+id/editNomeProduto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/edittext_background"
-                android:hint="Nome do produto"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/editQuantidade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/edittext_background"
-                android:hint="Quantidade"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/editUnidade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/edittext_background"
-                android:hint="Unidade (ex: kg, L, pct)"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/editDataValidade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/edittext_background"
-                android:hint="Data de validade"
-                android:padding="12dp" />
-
-            <!-- Botão -->
-            <EditText
-                android:id="@+id/editCategoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/edittext_background"
-                android:hint="Categoria (ex: grãos, bebidas...)"
-                android:padding="12dp" />
-
-            <Button
-                android:id="@+id/btnSalvarProduto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FFD600"
-                android:text="Salvar produto"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnScan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Escanear QR Code"
-            android:layout_marginTop="12dp"/>
-
-    </LinearLayout>
-</ScrollView>

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -33,15 +34,13 @@ public class DispensaActivity extends AppCompatActivity {
 
         // Botão de voltar
         ImageView btnVoltar = findViewById(R.id.btnVoltar);
-        btnVoltar.setOnClickListener(v -> {
-            finish(); // Fecha a Activity e volta para a anterior
-        });
+        btnVoltar.setOnClickListener(v -> finish());
 
         recyclerView = findViewById(R.id.recyclerDispensa);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listaProdutos = new ArrayList<>();
-        produtoAdapter = new ProdutoAdapter(listaProdutos);
+        produtoAdapter = new ProdutoAdapter(listaProdutos, (produtoId, position) -> excluirProduto(produtoId, position));
         recyclerView.setAdapter(produtoAdapter);
 
         db = FirebaseFirestore.getInstance();
@@ -65,6 +64,7 @@ public class DispensaActivity extends AppCompatActivity {
                         listaProdutos.clear();
                         for (QueryDocumentSnapshot doc : task.getResult()) {
                             Produto produto = doc.toObject(Produto.class);
+                            produto.setId(doc.getId()); // pega o ID do documento no Firestore
                             listaProdutos.add(produto);
                         }
 
@@ -88,5 +88,19 @@ public class DispensaActivity extends AppCompatActivity {
                         Toast.makeText(this, "Erro ao carregar produtos", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void excluirProduto(String produtoId, int position) {
+        db.collection("usuarios").document(nomeUsuario)
+                .collection("dispensa").document(produtoId)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    listaProdutos.remove(position);
+                    produtoAdapter.notifyItemRemoved(position);
+                    Toast.makeText(this, "Produto excluído!", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Erro ao excluir: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                );
     }
 }

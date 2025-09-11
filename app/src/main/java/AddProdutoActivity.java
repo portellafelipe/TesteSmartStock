@@ -2,11 +2,12 @@ package com.example.testesmartstock;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -15,18 +16,19 @@ import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import java.io.IOException;
-
 public class AddProdutoActivity extends AppCompatActivity {
 
-    private EditText editNome, editQuantidade, editUnidade, editDataValidade, editCategoria;
-    private Button btnSalvar, btnScan;
+    private RecyclerView recyclerView;
+    private AddProdutoAdapter adapter;
+    private ArrayList<NotaFiscalScraper.ProdutoNF> listaProdutos = new ArrayList<>();
+    private Button btnSalvarTodos, btnScan;
     private FirebaseFirestore db;
     private String nomeUsuario;
 
@@ -44,15 +46,15 @@ public class AddProdutoActivity extends AppCompatActivity {
             return;
         }
 
-        editNome = findViewById(R.id.editNomeProduto);
-        editQuantidade = findViewById(R.id.editQuantidade);
-        editUnidade = findViewById(R.id.editUnidade);
-        editDataValidade = findViewById(R.id.editDataValidade);
-        editCategoria = findViewById(R.id.editCategoria);
-        btnSalvar = findViewById(R.id.btnSalvarProduto);
+        recyclerView = findViewById(R.id.recyclerAddProdutos);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new AddProdutoAdapter(listaProdutos);
+        recyclerView.setAdapter(adapter);
+
+        btnSalvarTodos = findViewById(R.id.btnSalvarTodos);
         btnScan = findViewById(R.id.btnScan);
 
-        // BOTÃO SCAN (QR Code da nota fiscal)
+        // SCAN DO QR CODE
         btnScan.setOnClickListener(v -> {
             ScanOptions options = new ScanOptions();
             options.setPrompt("Aproxime o QR Code");
@@ -62,59 +64,51 @@ public class AddProdutoActivity extends AppCompatActivity {
             barcodeLauncher.launch(options);
         });
 
-        // BOTÃO SALVAR (Manual)
-        btnSalvar.setOnClickListener(v -> salvarProdutoManual());
+        // SALVAR TODOS PRODUTOS
+        btnSalvarTodos.setOnClickListener(v -> salvarTodosProdutos());
     }
 
-    // ---------------- FUNÇÃO SALVAR MANUAL ----------------
-    private void salvarProdutoManual() {
-        String nome = editNome.getText().toString();
-        String quantidade = editQuantidade.getText().toString();
-        String unidade = editUnidade.getText().toString();
-        String validadeBr = editDataValidade.getText().toString(); // DD-MM-AAAA
-        String categoria = editCategoria.getText().toString();
-
-        if (nome.isEmpty() || quantidade.isEmpty() || validadeBr.isEmpty()) {
-            Toast.makeText(this, "Preencha todos os campos obrigatórios", Toast.LENGTH_SHORT).show();
+    // ---------------- SALVAR TODOS ----------------
+    private void salvarTodosProdutos() {
+        if (listaProdutos.isEmpty()) {
+            Toast.makeText(this, "Nenhum produto para salvar.", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        // Converter DD-MM-AAAA → AAAA-MM-DD
-        String validadeISO;
-        try {
-            SimpleDateFormat formatoBr = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-            SimpleDateFormat formatoIso = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            Date data = formatoBr.parse(validadeBr);
-            validadeISO = formatoIso.format(data);
-        } catch (ParseException e) {
-            Toast.makeText(this, "Data inválida! Use o formato DD-MM-AAAA.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Map<String, Object> produto = new HashMap<>();
-        produto.put("nome", nome);
-        produto.put("quantidade", Integer.parseInt(quantidade));
-        produto.put("unidade", unidade);
-        produto.put("dataValidade", validadeISO);
-        produto.put("categoria", categoria);
 
         DocumentReference userDocRef = db.collection("usuarios").document(nomeUsuario);
-
-        userDocRef.set(new HashMap<>()) // garante que o documento do usuário exista
+        userDocRef.set(new HashMap<>()) // garante que o documento existe
                 .addOnSuccessListener(aVoid -> {
-                    userDocRef.collection("dispensa")
-                            .add(produto)
-                            .addOnSuccessListener(doc -> {
-                                Toast.makeText(this, "Produto salvo com sucesso!", Toast.LENGTH_SHORT).show();
-                                finish();
-                            })
-                            .addOnFailureListener(e ->
-                                    Toast.makeText(this, "Erro ao salvar produto: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                            );
+                    for (NotaFiscalScraper.ProdutoNF p : listaProdutos) {
+
+                        // Converter validade se for preenchida (pode estar vazia)
+                        String validadeISO = "";
+                        if (p.validade != null && !p.validade.isEmpty()) {
+                            try {
+                                SimpleDateFormat formatoBr = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                                SimpleDateFormat formatoIso = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                                Date data = formatoBr.parse(p.validade);
+                                validadeISO = formatoIso.format(data);
+                            } catch (ParseException e) {
+                                validadeISO = "";
+                            }
+                        }
+
+                        Map<String, Object> produto = new HashMap<>();
+                        produto.put("nome", p.nome);
+                        produto.put("quantidade", p.quantidade);
+                        produto.put("unidade", p.unidade);
+                        produto.put("dataValidade", validadeISO);
+                        produto.put("categoria", p.categoria);
+
+                        userDocRef.collection("dispensa").add(produto);
+                    }
+
+                    Toast.makeText(this, "Produtos salvos com sucesso!", Toast.LENGTH_LONG).show();
+                    finish();
                 })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Erro ao criar usuário: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                );
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Erro ao salvar produtos: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
     }
 
     // ---------------- RESULTADO DO QR CODE ----------------
@@ -122,7 +116,6 @@ public class AddProdutoActivity extends AppCompatActivity {
             registerForActivityResult(new ScanContract(), result -> {
                 if (result.getContents() != null) {
                     String url = result.getContents();
-
 
                     new Thread(() -> {
                         try {
@@ -132,12 +125,11 @@ public class AddProdutoActivity extends AppCompatActivity {
                                 if (produtos.isEmpty()) {
                                     Toast.makeText(this, "Nenhum produto encontrado na nota.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    NotaFiscalScraper.ProdutoNF p = produtos.get(0);
-                                    editNome.setText(p.nome);
-                                    editQuantidade.setText(p.quantidade);
-                                    editUnidade.setText(p.unidade);
+                                    listaProdutos.clear();
+                                    listaProdutos.addAll(produtos);
+                                    adapter.notifyDataSetChanged();
 
-                                    Toast.makeText(this, produtos.size() + " produtos encontrados!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(this, produtos.size() + " produtos carregados!", Toast.LENGTH_LONG).show();
                                 }
                             });
                         } catch (Exception e) {

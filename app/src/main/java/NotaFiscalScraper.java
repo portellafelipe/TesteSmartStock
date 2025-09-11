@@ -22,6 +22,10 @@ public class NotaFiscalScraper {
         public String nome;
         public String quantidade;
         public String unidade;
+        public String validade;
+        public String categoria;
+
+        public ProdutoNF() { }
 
         public ProdutoNF(String nome, String quantidade, String unidade) {
             this.nome = nome;

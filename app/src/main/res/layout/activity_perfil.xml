@@ -70,7 +70,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Altere as informações do seu perfil"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:textColor="#1E88E5"/>
             </LinearLayout>
 
             <ImageView
@@ -113,7 +114,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Acompanhe suas assinaturas"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:textColor="#1E88E5"/>
             </LinearLayout>
 
             <ImageView
@@ -156,7 +158,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Personalize suas experiências dentro do aplicativo"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:textColor="#1E88E5"/>
             </LinearLayout>
 
             <ImageView
@@ -199,7 +202,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gerencie permissões e acesse os termos de uso"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:textColor="#1E88E5"/>
             </LinearLayout>
 
             <ImageView
@@ -231,7 +235,8 @@
                     android:layout_height="wrap_content"
                     android:text="SmartStock\nVersão 1.1.0"
                     android:textSize="10sp"
-                    android:paddingStart="4dp"/>
+                    android:paddingStart="4dp"
+                    android:textColor="#1E88E5"/>
             </LinearLayout>
 
             <Button

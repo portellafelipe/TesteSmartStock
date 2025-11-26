@@ -1,32 +1,35 @@
 package com.example.testesmartstock;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import android.util.Log;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder> {
 
-    private ArrayList<Produto> listaProdutos;
-    private OnProdutoDeleteListener listener;
+    private Context context;
+    private List<Produto> listaProdutos;
+    private String nomeUsuario;
 
-    // Interface para comunicação com a Activity
-    public interface OnProdutoDeleteListener {
-        void onDeleteClick(String produtoId, int position);
-    }
 
-    public ProdutoAdapter(ArrayList<Produto> listaProdutos, OnProdutoDeleteListener listener) {
+    public ProdutoAdapter(Context context, List<Produto> listaProdutos, String nomeUsuario) {
+        this.context = context;
         this.listaProdutos = listaProdutos;
-        this.listener = listener;
+        this.nomeUsuario = nomeUsuario;
     }
 
     @NonNull
@@ -41,29 +44,46 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     public void onBindViewHolder(@NonNull ProdutoViewHolder holder, int position) {
         Produto produto = listaProdutos.get(position);
 
+        String caminhoCompleto = "usuarios/" + this.nomeUsuario + "/dispensa/" + produto.getId();
+        Log.d("EXCLUIR_PRODUTO", "Caminho de exclusão: " + caminhoCompleto);
+
         holder.textNome.setText(produto.getNome());
         holder.textCategoria.setText("Categoria: " + produto.getCategoria());
         holder.textQuantidade.setText("Quantidade: " + produto.getQuantidade() + " " + produto.getUnidade());
 
-        // Formatar data de validade para DD-MM-AAAA
-        String validadeISO = produto.getDataValidade(); // Ex: 2025-08-06
+        // Formatando validade
+        String validadeISO = produto.getDataValidade();
         String validadeFormatada = validadeISO;
         try {
             SimpleDateFormat formatoISO = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             SimpleDateFormat formatoBR = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             Date data = formatoISO.parse(validadeISO);
             validadeFormatada = formatoBR.format(data);
-        } catch (Exception e) {
-            // Em caso de erro, usa o valor original
-        }
+        } catch (Exception ignored) {}
 
         holder.textValidade.setText("Validade: " + validadeFormatada);
 
-        // Clique no botão excluir
-        holder.btnExcluir.setOnClickListener(v -> {
-            if (listener != null && produto.getId() != null) {
-                listener.onDeleteClick(produto.getId(), position);
+        // Clique longo para excluir
+        holder.itemView.setOnLongClickListener(v -> {
+            if (produto.getId() != null) {
+                Log.d("ADAPTER", "Tentando excluir para o usuário: " + this.nomeUsuario);
+                Log.d("ADAPTER", "ID do documento a ser excluído: " + produto.getId());
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("usuarios")
+                        .document(this.nomeUsuario)
+                        .collection("dispensa")
+                        .document(produto.getId())
+                        .delete()
+                        .addOnSuccessListener(aVoid -> {
+                            listaProdutos.remove(position);
+                            notifyItemRemoved(position);
+                            Toast.makeText(context, "Produto excluído!", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(e ->
+                                Toast.makeText(context, "Erro ao excluir: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                        );
             }
+            return true;
         });
     }
 
@@ -74,7 +94,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
     public static class ProdutoViewHolder extends RecyclerView.ViewHolder {
         TextView textNome, textCategoria, textQuantidade, textValidade;
-        Button btnExcluir;
 
         public ProdutoViewHolder(View itemView) {
             super(itemView);
@@ -82,8 +101,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             textCategoria = itemView.findViewById(R.id.textCategoria);
             textQuantidade = itemView.findViewById(R.id.textQuantidade);
             textValidade = itemView.findViewById(R.id.textValidade);
-            btnExcluir = itemView.findViewById(R.id.btnExcluir); // botão no XML
         }
     }
 }
+
 

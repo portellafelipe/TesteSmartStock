@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
+
+import com.google.firebase.firestore.CollectionReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,41 +78,42 @@ public class AddProdutoActivity extends AppCompatActivity {
             return;
         }
 
-        DocumentReference userDocRef = db.collection("usuarios").document(nomeUsuario);
-        userDocRef.set(new HashMap<>()) // garante que o documento existe
-                .addOnSuccessListener(aVoid -> {
-                    for (NotaFiscalScraper.ProdutoNF p : listaProdutos) {
+        // Referência direta à subcoleção dispensa
+        CollectionReference dispensaRef = db.collection("usuarios")
+                .document(nomeUsuario)
+                .collection("dispensa");
 
-                        // Converter validade se for preenchida (pode estar vazia)
-                        String validadeISO = "";
-                        if (p.validade != null && !p.validade.isEmpty()) {
-                            try {
-                                SimpleDateFormat formatoBr = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                                SimpleDateFormat formatoIso = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                                Date data = formatoBr.parse(p.validade);
-                                validadeISO = formatoIso.format(data);
-                            } catch (ParseException e) {
-                                validadeISO = "";
-                            }
-                        }
+        for (NotaFiscalScraper.ProdutoNF p : listaProdutos) {
+            // Converter validade se for preenchida (não obrigatória)
+            String validadeISO = "";
+            if (p.validade != null && !p.validade.isEmpty()) {
+                try {
+                    SimpleDateFormat formatoBr = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                    SimpleDateFormat formatoIso = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    Date data = formatoBr.parse(p.validade);
+                    validadeISO = formatoIso.format(data);
+                } catch (ParseException e) {
+                    validadeISO = ""; // se der erro, salva vazio
+                }
+            }
 
-                        Map<String, Object> produto = new HashMap<>();
-                        produto.put("nome", p.nome);
-                        produto.put("quantidade", p.quantidade);
-                        produto.put("unidade", p.unidade);
-                        produto.put("dataValidade", validadeISO);
-                        produto.put("categoria", p.categoria);
+            Map<String, Object> produto = new HashMap<>();
+            produto.put("nome", p.nome);
+            produto.put("quantidade", p.quantidade);
+            produto.put("unidade", p.unidade);
+            produto.put("dataValidade", validadeISO);
+            produto.put("categoria", p.categoria != null ? p.categoria : "");
 
-                        userDocRef.collection("dispensa").add(produto);
-                    }
+            dispensaRef.add(produto)
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Erro ao salvar: " + p.nome, Toast.LENGTH_SHORT).show()
+                    );
+        }
 
-                    Toast.makeText(this, "Produtos salvos com sucesso!", Toast.LENGTH_LONG).show();
-                    finish();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Erro ao salvar produtos: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                });
+        Toast.makeText(this, "Produtos salvos com sucesso!", Toast.LENGTH_LONG).show();
+        finish();
     }
+
 
     // ---------------- RESULTADO DO QR CODE ----------------
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher =
@@ -134,9 +138,9 @@ public class AddProdutoActivity extends AppCompatActivity {
                             });
                         } catch (Exception e) {
                             e.printStackTrace();
-                            runOnUiThread(() -> {
-                                Toast.makeText(this, "Erro ao extrair dados da nota fiscal. Tente novamente.", Toast.LENGTH_LONG).show();
-                            });
+                            runOnUiThread(() ->
+                                    Toast.makeText(this, "Erro ao extrair dados da nota fiscal. Tente novamente.", Toast.LENGTH_LONG).show()
+                            );
                         }
                     }).start();
                 }

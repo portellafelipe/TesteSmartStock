@@ -1,0 +1,99 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/textPlanTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SmartStock Premium"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/textPlanSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mais organização. Zero desperdício."
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="center" />
+
+        <!-- Card do Plano -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_white_yellow_border"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginTop="24dp"
+            android:elevation="6dp">
+
+            <TextView
+                android:id="@+id/planName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plano Pro - Mensal"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/planPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 9,90 / mês"
+                android:textSize="18sp"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/textFeaturesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Benefícios:"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Alertas avançados de vencimento\n• Histórico completo de consumo\n• Backup em nuvem\n• Sincronização entre dispositivos"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/buttonSubscribe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Assinar agora" />
+        </LinearLayout>
+
+        <!-- Rodapé -->
+        <TextView
+            android:id="@+id/textFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancelamento a qualquer momento"
+            android:textSize="12sp"
+            android:layout_marginTop="16dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/textTerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Termos e condições"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginTop="4dp" />
+
+    </LinearLayout>
+
+</ScrollView>

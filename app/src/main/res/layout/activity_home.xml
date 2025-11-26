@@ -89,7 +89,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_blue_border"
-                android:text="Acessar dispensa"
+                android:text="Acessar despensa"
                 android:textColor="#1E88E5" />
         </LinearLayout>
 
@@ -194,17 +194,21 @@
                 android:padding="12dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3 com estoque baixo"
-                    android:textColor="#F57F17"
-                    android:textStyle="bold" />
+                    android:id="@+id/alertaVencidos"
+                    android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#F8D7DA"
+                android:textColor="#721C24"
+                android:text="Nenhum produto vencido"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="repor itens"
-                    android:textColor="#F57F17" />
+                    android:id="@+id/alertaBaixoEstoque"
+                    android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFF3CD"
+                android:textColor="#856404"
+                android:text="Nenhum produto próximo de vencer" />
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

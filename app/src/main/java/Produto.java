@@ -1,9 +1,9 @@
 package com.example.testesmartstock;
 
 public class Produto {
-    private String id;          // <--- novo campo para guardar o ID do documento
+    private String id;          // ID do documento no Firestore
     private String nome;
-    private int quantidade;
+    private String quantidade;  // <-- Alterado para String (mais seguro)
     private String unidade;
     private String dataValidade;
     private String categoria;
@@ -12,7 +12,7 @@ public class Produto {
         // Construtor vazio necessário pro Firestore
     }
 
-    public Produto(String nome, int quantidade, String unidade, String dataValidade, String categoria) {
+    public Produto(String nome, String quantidade, String unidade, String dataValidade, String categoria) {
         this.nome = nome;
         this.quantidade = quantidade;
         this.unidade = unidade;
@@ -20,22 +20,24 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    // ---- NOVOS GET/SET ----
+    // ---- GETTERS E SETTERS ----
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
-    // ---- GETTERS EXISTENTES ----
     public String getNome() { return nome; }
-    public int getQuantidade() { return quantidade; }
-    public String getUnidade() { return unidade; }
-    public String getDataValidade() { return dataValidade; }
-    public String getCategoria() { return categoria; }
-
-    // ---- SETTERS (caso precise atualizar dados no Firestore futuramente) ----
     public void setNome(String nome) { this.nome = nome; }
-    public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
+
+    public String getQuantidade() { return quantidade; }
+    public void setQuantidade(String quantidade) { this.quantidade = quantidade; }
+
+    public String getUnidade() { return unidade; }
     public void setUnidade(String unidade) { this.unidade = unidade; }
+
+    public String getDataValidade() { return dataValidade; }
     public void setDataValidade(String dataValidade) { this.dataValidade = dataValidade; }
+
+    public String getCategoria() { return categoria; }
     public void setCategoria(String categoria) { this.categoria = categoria; }
 }
+
 

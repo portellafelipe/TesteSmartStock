@@ -66,56 +66,5 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp" />
 
-    <!-- Texto "Continue com" -->
-    <TextView
-        android:id="@+id/continueWithText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="----------------- Continue com -----------------"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/loginButton"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Ícones sociais (placeholder com estrela) -->
-    <LinearLayout
-        android:id="@+id/socialIcons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/continueWithText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_insta"
-            android:background="@drawable/circle_background"
-            android:padding="8dp"
-            android:contentDescription="Social 1" />
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_insta"
-            android:background="@drawable/circle_background"
-            android:padding="8dp"
-            android:contentDescription="Social 2" />
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_insta"
-            android:background="@drawable/circle_background"
-            android:padding="8dp"
-            android:contentDescription="Social 3" />
-    </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 

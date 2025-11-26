@@ -35,7 +35,7 @@
                 android:id="@+id/textExplicacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="• Cadastre seus produtos no app.\n\n• Gerencie sua dispensa de forma prática.\n\n• Utilize o leitor QR Code para cadastrar e atualizar produtos facilmente.\n\n• Receba alertas de validade e estoque baixo.\n\n• Acompanhe seus itens em qualquer lugar!"
+                android:text="• Cadastre seus produtos no app.\n\n• Gerencie sua despensa de forma prática.\n\n• Utilize o leitor QR Code para cadastrar e atualizar produtos facilmente.\n\n• Receba alertas de validade e estoque baixo.\n\n• Acompanhe seus itens em qualquer lugar!"
                 android:textSize="16sp"
                 android:textColor="#333333"
                 android:lineSpacingExtra="6dp"

@@ -46,17 +46,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Clique dos ícones sociais
-        LinearLayout socialIcons = findViewById(R.id.socialIcons);
-        for (int i = 0; i < socialIcons.getChildCount(); i++) {
-            View v = socialIcons.getChildAt(i);
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(MainActivity.this, "Ícone social clicado", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
-    }
 }
 

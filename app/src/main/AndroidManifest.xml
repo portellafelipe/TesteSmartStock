@@ -27,6 +27,7 @@
         <activity android:name=".AddProdutoActivity" android:exported="false"/>
         <activity android:name=".DispensaActivity" android:exported="false" />
         <activity android:name=".TermosActivity" android:exported="false"/>
+        <activity android:name=".PlanosActivity" android:exported="false"/>
 
         <activity
             android:name=".CaptureActivityPortrait"

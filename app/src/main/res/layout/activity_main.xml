@@ -69,7 +69,7 @@
             android:id="@+id/loginButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:text="Já possui uma conta? Login"
+            android:text="Fazer Login"
             android:textColor="#000000"
             app:layout_constraintTop_toBottomOf="@id/registerButton"
             android:layout_marginTop="16dp"

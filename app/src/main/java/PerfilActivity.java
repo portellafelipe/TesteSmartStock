@@ -33,7 +33,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         cardMeusDados = findViewById(R.id.cardMeusDados);
         cardAssinaturas = findViewById(R.id.cardAssinaturas);
-        cardPreferencias = findViewById(R.id.cardPreferencias);
+        //cardPreferencias = findViewById(R.id.cardPreferencias);
         cardTermos = findViewById(R.id.cardTermos);
         btnSair = findViewById(R.id.btnSair);
 
@@ -50,9 +50,9 @@ public class PerfilActivity extends AppCompatActivity {
         });
 
         // Preferências
-        cardPreferencias.setOnClickListener(v -> {
-            startActivity(new Intent(PerfilActivity.this, PreferenciasActivity.class));
-        });
+        //cardPreferencias.setOnClickListener(v -> {
+        //    startActivity(new Intent(PerfilActivity.this, PreferenciasActivity.class));
+        //});
 
 
         // Termos de uso

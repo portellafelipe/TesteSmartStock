@@ -3,6 +3,7 @@ package com.example.testesmartstock;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper; // <--- NOVO IMPORT
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -23,12 +24,10 @@ public class SplashActivity extends AppCompatActivity {
         Animation animacao = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         logo.startAnimation(animacao);
 
-        // Delay para ir pra MainActivity (onde escolhe Login ou Cadastro)
-        new Handler().postDelayed(() -> {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }, SPLASH_TIME_OUT);
     }
 }
-

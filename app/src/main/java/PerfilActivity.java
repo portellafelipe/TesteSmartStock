@@ -37,34 +37,34 @@ public class PerfilActivity extends AppCompatActivity {
         cardTermos = findViewById(R.id.cardTermos);
         btnSair = findViewById(R.id.btnSair);
 
-        // Clique Meus Dados
+        // Meus Dados
         cardMeusDados.setOnClickListener(v -> {
             Intent intent = new Intent(PerfilActivity.this, MeusDadosActivity.class);
+            intent.putExtra("nome_usuario", nomeUsuario);
             startActivity(intent);
         });
 
+        // Assinaturas
+        cardAssinaturas.setOnClickListener(v -> {
+            startActivity(new Intent(PerfilActivity.this, AssinaturasActivity.class));
+        });
 
-        // Clique Assinaturas
-        cardAssinaturas.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Assinaturas (Em desenvolvimento)", Toast.LENGTH_SHORT).show()
-        );
+        // Preferências
+        cardPreferencias.setOnClickListener(v -> {
+            startActivity(new Intent(PerfilActivity.this, PreferenciasActivity.class));
+        });
 
-        // Clique Preferências
-        cardPreferencias.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Preferências (Em desenvolvimento)", Toast.LENGTH_SHORT).show()
-        );
 
-        // Clique Termos de Uso
+        // Termos de uso
         cardTermos.setOnClickListener(v -> {
             Intent intent = new Intent(PerfilActivity.this, TermosActivity.class);
             startActivity(intent);
         });
 
-
-
-        // Botão Sair
+        // Sair
         btnSair.setOnClickListener(v -> showDialogLogout());
     }
+
 
     private void showDialogLogout() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

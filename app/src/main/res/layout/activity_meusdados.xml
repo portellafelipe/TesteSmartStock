@@ -9,17 +9,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="@drawable/rounded_white_bg"
         android:layout_margin="16dp"
+        android:background="@drawable/rounded_white_bg"
         android:elevation="4dp">
 
-        <!-- Topo azul com cantos arredondados -->
+        <!-- TOPO AZUL -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_top_blue_bg"
-            android:padding="16dp"
             android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/rounded_top_blue_bg"
             android:gravity="center_vertical">
 
             <ImageView
@@ -33,100 +33,69 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Meus dados"
-                android:textStyle="bold"
                 android:textSize="20sp"
-                android:layout_marginStart="16dp"
-                android:textColor="#FFFFFF"/>
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="16dp"/>
         </LinearLayout>
 
-        <!-- Campos de Dados -->
+        <!-- NOME -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome de usuário"
-            android:layout_marginTop="24dp"
             android:textColor="#1E88E5"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"/>
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Digite seu novo nome"
             android:background="@drawable/edittext_blue_background"
-            android:enabled="true"
-            android:text="xxxxxxxxxxxxxxxxxxxx"
             android:padding="12dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome completo"
-            android:layout_marginTop="16dp"
-            android:textColor="#1E88E5"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/editTextNomeCompleto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext_blue_background"
-            android:enabled="false"
-            android:text="xxxxxxxxxxxxxxxxxxxx"
-            android:padding="12dp"/>
-
+        <!-- EMAIL -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="E-mail"
-            android:layout_marginTop="16dp"
             android:textColor="#1E88E5"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edittext_blue_background"
+            android:hint="Altere o email..."
             android:enabled="false"
-            android:text="xxxxxxxxxxxxxxxxxxxx"
+            android:background="@drawable/edittext_blue_background"
             android:padding="12dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Data de nascimento"
-            android:layout_marginTop="16dp"
-            android:textColor="#1E88E5"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/editTextDataNascimento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext_blue_background"
-            android:enabled="false"
-            android:text="xx/xx/xxxx"
-            android:padding="12dp"/>
-
-        <!-- Botões -->
+        <!-- BOTÃO SALVAR -->
         <Button
             android:id="@+id/btnSalvarAlteracoes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:text="Salvar alterações"
             android:textColor="#FFFFFF"
+            android:layout_marginTop="32dp"
             android:backgroundTint="#1E88E5"/>
 
+        <!-- BOTÃO EXCLUIR -->
         <Button
             android:id="@+id/btnExcluirConta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:text="Excluir conta"
             android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp"
             android:backgroundTint="#D90429"/>
 
     </LinearLayout>
+
 </ScrollView>
+
 

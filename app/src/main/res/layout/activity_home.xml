@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5E9F0">  <!-- Fundo cinza claro para contraste -->
+    android:background="#E5E9F0">
 
     <LinearLayout
         android:layout_width="match_parent"

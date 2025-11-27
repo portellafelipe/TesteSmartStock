@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEF2F7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_white_bg"
+        android:elevation="4dp">
+
+        <!-- TOPO AMARELO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_top_yellow_bg"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/btnVoltar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_seta_voltar"
+                android:contentDescription="Voltar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preferências"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp"/>
+        </LinearLayout>
+
+        <!-- OPÇÕES -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="24dp">
+
+            <CheckBox
+                android:id="@+id/checkNotificacoes"
+                android:text="Ativar notificações de vencimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="Avisar com antecedência (dias)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"/>
+
+            <Spinner
+                android:id="@+id/spinnerDias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/checkTemaEscuro"
+                android:text="Ativar tema escuro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"/>
+
+            <CheckBox
+                android:id="@+id/checkSom"
+                android:text="Ativar som de notificação"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"/>
+
+            <CheckBox
+                android:id="@+id/checkOrdenar"
+                android:text="Mostrar vencidos primeiro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"/>
+
+            <Button
+                android:id="@+id/btnSalvarPrefs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salvar preferências"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#1E88E5"
+                android:textColor="#FFFFFF"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

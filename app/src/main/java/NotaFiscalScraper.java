@@ -13,7 +13,7 @@ import org.jsoup.Connection;
 import android.util.Log;
 
 /**
- * Faz o scraping da página pública da NFC-e do PR.
+ * Faz o scraping da página pública da NFC-e.
  * Extrai apenas o nome, quantidade e unidade de cada item.
  */
 public class NotaFiscalScraper {
@@ -34,7 +34,7 @@ public class NotaFiscalScraper {
         }
     }
 
-    /** Retorna a lista de produtos encontrados na NFC-e do PR. */
+    /** Retorna a lista de produtos encontrados na NFC-e. */
     public static List<ProdutoNF> extrairProdutos(String url) {
         List<ProdutoNF> itens = new ArrayList<>();
 

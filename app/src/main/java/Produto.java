@@ -3,7 +3,7 @@ package com.example.testesmartstock;
 public class Produto {
     private String id;          // ID do documento no Firestore
     private String nome;
-    private String quantidade;  // <-- Alterado para String (mais seguro)
+    private String quantidade;
     private String unidade;
     private String dataValidade;
     private String categoria;

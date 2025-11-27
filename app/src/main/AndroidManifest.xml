@@ -28,6 +28,8 @@
         <activity android:name=".DispensaActivity" android:exported="false" />
         <activity android:name=".TermosActivity" android:exported="false"/>
         <activity android:name=".PlanosActivity" android:exported="false"/>
+        <activity android:name=".AssinaturasActivity" android:exported="false"/>
+        <activity android:name=".PreferenciasActivity" android:exported="false"/>
 
         <activity
             android:name=".CaptureActivityPortrait"

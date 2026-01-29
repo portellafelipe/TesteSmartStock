@@ -67,11 +67,10 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Chamada inicial (pode ser removida, mas manteremos por segurança)
+        // Chamada inicial
         carregarAlertas();
     }
 
-    // MÉTODO NOVO: CHAMA carregarAlertas SEMPRE QUE A TELA VOLTA A FICAR VISÍVEL
     @Override
     protected void onResume() {
         super.onResume();
@@ -82,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String nomeUsuario = getIntent().getStringExtra("nome_usuario");
 
-        // NOTE: Use os IDs corretos que definimos no XML
         TextView alertaVencidos = findViewById(R.id.alertaContadorVencidos);
         TextView alertaProximosVencer = findViewById(R.id.alertaProximosVencer);
 
@@ -124,7 +122,7 @@ public class HomeActivity extends AppCompatActivity {
                                     long diff = validade.getTime() - hoje.getTime();
                                     long dias = diff / (1000 * 60 * 60 * 24);
 
-                                    // Lógica Corrigida para Vencidos (caixa vermelha)
+                                    // Lógica Corrigida para Vencidos
                                     if (diff < 0) {
                                         vencidos++;
                                     }

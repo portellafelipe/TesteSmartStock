@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Certifique-se de que esse é o nome do seu XML
+        setContentView(R.layout.activity_main);
 
         // Inicializa os botões
         registerButton = findViewById(R.id.registerButton);

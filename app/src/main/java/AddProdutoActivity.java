@@ -78,13 +78,13 @@ public class AddProdutoActivity extends AppCompatActivity {
             return;
         }
 
-        // Referência direta à subcoleção dispensa
+        // Referência direta à subcoleção
         CollectionReference dispensaRef = db.collection("usuarios")
                 .document(nomeUsuario)
                 .collection("dispensa");
 
         for (NotaFiscalScraper.ProdutoNF p : listaProdutos) {
-            // Converter validade se for preenchida (não obrigatória)
+            // Converter validade(não obrigatória)
             String validadeISO = "";
             if (p.validade != null && !p.validade.isEmpty()) {
                 try {

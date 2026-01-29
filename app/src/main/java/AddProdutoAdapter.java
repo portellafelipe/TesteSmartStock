@@ -32,7 +32,7 @@ public class AddProdutoAdapter extends RecyclerView.Adapter<AddProdutoAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NotaFiscalScraper.ProdutoNF produto = listaProdutos.get(position);
 
-        // 1. REMOVER LISTENERS ANTIGOS (Crucial para reciclagem!)
+        // 1. REMOVER LISTENERS ANTIGOS
         holder.editNome.removeTextChangedListener(holder.nomeWatcher);
         holder.editQuantidade.removeTextChangedListener(holder.quantidadeWatcher);
         holder.editUnidade.removeTextChangedListener(holder.unidadeWatcher);
@@ -40,7 +40,6 @@ public class AddProdutoAdapter extends RecyclerView.Adapter<AddProdutoAdapter.Vi
         holder.editCategoria.removeTextChangedListener(holder.categoriaWatcher);
 
         // 2. ATUALIZAR VIEWS COM DADOS DO NOVO ITEM
-        // Garantir que todos os campos sejam preenchidos (limpa o estado do item anterior)
         holder.editNome.setText(produto.nome);
         holder.editQuantidade.setText(produto.quantidade);
         holder.editUnidade.setText(produto.unidade);
@@ -49,7 +48,6 @@ public class AddProdutoAdapter extends RecyclerView.Adapter<AddProdutoAdapter.Vi
 
         // 3. ANEXAR NOVOS LISTENERS, ATUALIZANDO O OBJETO DE DADOS (ProdutoNF)
 
-        // Atualiza a referência de atualização para o PRODUTO atual
         holder.nomeWatcher.setOnTextChanged(s -> produto.nome = s);
         holder.quantidadeWatcher.setOnTextChanged(s -> produto.quantidade = s);
         holder.unidadeWatcher.setOnTextChanged(s -> produto.unidade = s);
@@ -88,12 +86,11 @@ public class AddProdutoAdapter extends RecyclerView.Adapter<AddProdutoAdapter.Vi
             validadeWatcher = new SimpleWatcher(s -> {});
             categoriaWatcher = new SimpleWatcher(s -> {});
 
-            // Anexar inicialmente (poderia ser feito no onBind, mas assim garante que os objetos existem)
-            // editNome.addTextChangedListener(nomeWatcher); // Removido para ser mais limpo no onBind
+
         }
     }
 
-    // Classe helper para simplificar TextWatcher (Modificada para ser reutilizável)
+    // Classe helper para simplificar TextWatcher
     private static class SimpleWatcher implements TextWatcher {
         private OnTextChanged onTextChanged;
 

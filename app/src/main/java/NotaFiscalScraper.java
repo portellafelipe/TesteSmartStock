@@ -34,7 +34,6 @@ public class NotaFiscalScraper {
         }
     }
 
-    /** Retorna a lista de produtos encontrados na NFC-e. */
     public static List<ProdutoNF> extrairProdutos(String url) {
         List<ProdutoNF> itens = new ArrayList<>();
 
